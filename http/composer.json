@@ -1,7 +1,7 @@
 {
   "name": "zekiunal/blog.sample",
   "description": "Public news publishing portal where news can be published and disseminated.",
-  "license": "commercial",
+  "license": "MIT",
   "authors": [
     {
       "name": "Zeki Ünal",
