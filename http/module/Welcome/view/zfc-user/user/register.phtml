@@ -1,0 +1,81 @@
+<?php
+/**
+ * @author      Zeki Unal <zekiunal@gmail.com>
+ * @description
+ *
+ * @name        register .phtml
+ * @version     0.1
+ * @created     2015/12/19 21:48
+ */
+ ?>
+
+<?php
+if (!$this->enableRegistration) {
+    echo $this->translate('Registration is disabled');
+    return;
+}
+/**
+ * @var \Zend\Form\Form $form
+ */
+$form = $this->registerForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcuser/register'));
+$form->setAttribute('method', 'post');
+$form->setAttribute('autocomplete', 'off');
+$form->setAttribute('id', 'register-form');
+$form->setAttribute('role', 'form');
+?>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-login">
+            <div class="panel-heading">
+                <div class="row">
+                    <?php if ($this->enableRegistration) : ?>
+                            <a href="#" class="active" id="register-form-link">Register</a>
+                    <?php endif; ?>
+                </div>
+                <hr>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <?php if ($this->enableRegistration) : ?>
+
+                            <?php echo $this->form()->openTag($form) ?>
+                            <?php foreach ($form as $element): ?>
+                        <div class="form-group">
+                                <?php if (!$element instanceof Zend\Form\Element\Button): ?>
+                                    <?php echo $this->formLabel($element->setAttribute('class', 'form-control')) ?><br />
+                                <?php endif ?>
+
+                                <?php if ($element instanceof Zend\Form\Element\Button): ?>
+                                    <hr />
+                                    <?php echo $this->formButton($element
+                                        ->setAttribute('class', 'form-control btn btn-register')
+                                        ->setAttribute('name', 'login-submit')
+                                        ->setAttribute('id', 'login-submit')
+                                    ) ?>
+                                <?php elseif ($element instanceof Zend\Form\Element\Captcha): ?>
+                                    <?php echo $this->formCaptcha($element) . $this->formElementErrors($element) ?>
+                                <?php else: ?>
+
+                                    <?php echo $this->formInput(
+                                                $element
+                                                    ->setAttribute('class', 'form-control')
+                                                    ->setAttribute('placeholder', $element->getLabel())
+                                            ) . $this->formElementErrors($element->setAttribute('class', 'warning'))
+                                        ?>
+                                <?php endif ?>
+                            </div>
+                            <?php endforeach ?>
+
+
+                            <?php echo $this->form()->closeTag() ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

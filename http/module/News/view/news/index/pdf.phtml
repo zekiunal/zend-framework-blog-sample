@@ -1,0 +1,28 @@
+<?php
+/**
+ * @author      Zeki Unal <zekiunal@gmail.com>
+ * @description
+ *
+ * @name        read .phtml
+ * @version     0.1
+ * @created     2015/12/19 17:16
+ */
+?>
+<style>
+    .text-right {
+        text-align: right
+    }
+</style>
+<h1>Sample Blog | News</h1>
+<hr/>
+<?php
+$title = $news->title;
+$this->headTitle($title);
+?>
+<h2><?php echo $this->escapeHtml($title); ?></h2>
+<img src="<?php echo $_SERVER["DOCUMENT_ROOT"] ?>/content/images/upload/750x750/<?php echo $news->photo ?>" width="700"/>
+<?php
+$text = str_replace('src="' . $_SERVER["REQUEST_SCHEME"] . "://" . $_SERVER["HTTP_HOST"], 'src="' . $_SERVER["DOCUMENT_ROOT"], $news->text);
+?>
+<p><?php echo str_replace('width: 750px', 'width: 700px"', $text) ?></p>
+<p class="text-right">Posted by <a href="#"><?= $news->user()->username ?></a> on <?= (new DateTime($news->created_at))->format('F d, Y / H:i') ?></p>

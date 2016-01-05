@@ -1,0 +1,42 @@
+<?php
+/**
+ * @author      Zeki Unal <zekiunal@gmail.com>
+ * @description
+ *
+ * @name        index .phtml
+ * @version     0.1
+ * @created     2015/12/18 13:16
+ */
+ ?>
+
+ <h3><?php echo $this->translate('Hello'); ?>, <?php echo $this->zfcUserDisplayName() ?>!</h3>
+ <a href="<?php echo $this->url('zfcuser/logout') ?>">[<?php echo $this->translate('Logout'); ?>]</a>
+ <!--<a href="<?php echo $this->url('zfcuser/logout') ?>">[<?php echo $this->translate('Edit My Profile'); ?>]</a>-->
+ <div style="clear:both;"></div>
+<hr />
+
+<div class="row">
+ <div class="col-sm-6"><h2>My Posts</h2></div>
+ <div class="col-sm-6 text-right"><a href="/account/post" class="btn btn-success">New Post</a></div>
+</div>
+
+<hr />
+
+<?php foreach ($news as $item) : ?>
+ <div class="post-preview">
+  <a href="<?php echo $this->url('news', array('action' => 'read', 'id' => $item->news_id)); ?>">
+
+   <h3 class="post-title">
+    <?php echo $this->escapeHtml($item->title); ?>
+   </h3>
+   <img src="/content/images/upload/750x150/<?=$item->photo?>" width="750" class="image-content" />
+   <p class="post-subtitle">
+    <?php echo $item->highlight; ?>
+   </p>
+  </a>
+  <p class="post-meta">Posted by <a href="#"><?= $item->user()->email ?></a> on <?= (new DateTime($item->created_at))->format('F d, Y / H:i') ?></p>
+  <p class="text-right"><a href="<?php echo $this->url('account', array('action' => 'delete', 'id' => $item->news_id)); ?>" class="btn btn-danger">Remove Post</a> </p>
+ </div>
+ <hr>
+
+<?php endforeach; ?>

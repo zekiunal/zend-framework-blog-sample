@@ -1,0 +1,52 @@
+<?php
+/**
+ * @author      Zeki Unal <zekiunal@gmail.com>
+ * @description
+ *
+ * @name        index .phtml
+ * @version     0.1
+ * @created     2015/12/18 13:01
+ */
+?>
+
+<?php
+$title = 'Welcome';
+$this->headTitle($title);
+?>
+
+    <?php foreach ($news as $item) : ?>
+        <div class="post-preview">
+            <a href="<?php echo $this->url('news', array('action' => 'read', 'id' => $item->news_id)); ?>">
+                <h3 class="post-title">
+                    <?php echo $this->escapeHtml($item->title); ?>
+                </h3>
+                <img src="/content/images/upload/750x150/<?=$item->photo?>" width="750" class="image-content"/>
+                <p class="post-subtitle">
+                    <?php echo $item->highlight; ?>
+                </p>
+            </a>
+            <p class="post-meta text-right ">Posted by <a href="#"><?= $item->user()->username ?></a> on <?= (new DateTime($item->created_at))->format('F d, Y / H:i') ?></p>
+
+        </div>
+        <hr>
+
+    <?php endforeach; ?>
+
+<!-- Pager -->
+<!--
+<ul class="pager">
+    <li class="next">
+        <a href="#">Older Posts &rarr;</a>
+    </li>
+</ul>
+-->
+<!--
+<tr>
+    <td><a href="<?php echo $this->url('news', array('action' => 'read', 'id' => $item->news_id)); ?>"><?php echo $this->escapeHtml($item->title); ?></a></td>
+    <td><?php echo $item->highlight; ?></td>
+    <td>
+        <a href="<?php echo $this->url('news', array('action' => 'edit', 'id' => $item->news_id)); ?>">Edit</a>
+        <a href="<?php echo $this->url('news', array('action' => 'delete', 'id' => $item->news_id)); ?>">Delete</a>
+    </td>
+</tr>
+-->

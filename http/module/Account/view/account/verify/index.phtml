@@ -1,0 +1,20 @@
+<?php
+/**
+ * @author      Zeki Unal <zekiunal@gmail.com>
+ * @description
+ *
+ * @name        verify .phtml
+ * @version     0.1
+ * @created     2015/12/20 16:48
+ */
+?>
+<?php
+$title = 'Verify Your Email';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>We’ve sent a verification link to <?= $email ?></p>
+<p>Please check your inbox and verify your email address.</p>
+
+<p><a href="/account/verify?resend=1">Resend verification link</a></p>
