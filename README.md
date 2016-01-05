@@ -17,7 +17,7 @@ cd /http
 composer update
 ```
 
-5 - Configure your apache http server. 
+## Configure your apache http server. 
 
 #### example httpd.conf File
 

@@ -25,7 +25,7 @@
 ##### Self Write Zend Modules
 
 * Welcome - List latest 10 news 
-* Account - Verify registred users, do authenticated user operations ( create new post and delete ) 
+* Account - Verify registered users, do authenticated user operations ( create new post and delete ) 
 * News    - read news, convert to pdf and subscribe RSS feeds. 
 
 ##### 3rd Party Zend Modules
